@@ -16,7 +16,7 @@ fn main() {
 	println!("observation space:\n{:?}\n", env.observation_space());
 	println!("action space:\n{:?}\n", env.action_space());
 
-	let _ = env.monitor_start("/tmp/random-agent-results".to_string(), true, false);
+	let _ = env.monitor_start("/tmp/random-agent-results", true, false);
 	for ep in 0..10 {
 		let mut tot_reward = 0.;
 		let _ = env.reset();

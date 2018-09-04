@@ -74,9 +74,9 @@ impl Environment {
             info: state["info"].clone()
         })
     }
-    pub fn monitor_start(&self, directory: String, force: bool, resume: bool) -> GymResult<Value> {
+    pub fn monitor_start(&self, directory: &str, force: bool, resume: bool) -> GymResult<Value> {
         let mut req = BTreeMap::new();
-        req.insert("directory", Value::String(directory));
+        req.insert("directory", Value::String(directory.into()));
         req.insert("force", Value::Bool(force));
         req.insert("resume", Value::Bool(resume));
 
@@ -87,7 +87,7 @@ impl Environment {
         let path = "/v1/envs/".to_string() + &self.instance_id + "/monitor/close/";
         self.client.post(path, &Value::Null)
     }
-    pub fn upload(&self, training_dir: String, api_key: String, algorithm_id: String) -> GymResult<Value> {
+    pub fn upload(&self, training_dir: &str, api_key: &str, algorithm_id: &str) -> GymResult<Value> {
         let mut req = BTreeMap::new();
         req.insert("training_dir", training_dir);
         req.insert("api_key", api_key);
